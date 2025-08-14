@@ -16,6 +16,9 @@ yellow="${bold}$(tput setaf 3)"
 
 post_install() {
   note "==> To enable the service, run:"
+  note "    mkdir -p ~/.config/systemd/user"
+  note "    ln -s /usr/lib/systemd/system/vicinae.service ~/.config/systemd/user/vicinae.service"
+  note "    systemctl --user daemon-reload"
   note "    systemctl --user enable --now vicinae.service"
 }
 
