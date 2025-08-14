@@ -1,0 +1,13 @@
+[Unit]
+Description=A focused launcher for your desktop
+After=graphical-session.target
+BindsTo=graphical-session.target
+PartOf=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/vicinae server
+
+[Install]
+WantedBy=graphical-session.target
