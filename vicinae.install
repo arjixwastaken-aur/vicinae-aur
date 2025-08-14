@@ -16,7 +16,7 @@ yellow="${bold}$(tput setaf 3)"
 
 post_install() {
   note "==> To enable the service, run:"
-  note "    sudo systemctl enable --now vicinae.service"
+  note "    systemctl --user enable --now vicinae.service"
 }
 
 post_upgrade() {
