@@ -27,8 +27,11 @@ makedepends=(
 )
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-source=("git+${url}.git")
-sha256sums=('SKIP')
+install=vicinae.install
+source=("git+${url}.git" "vicinae.desktop" "vicinae.service")
+sha256sums=('SKIP'
+            '184c7c1d887168e34c15e9d9a629e07690f98bc529cd1633ed6546b07afb8fe5'
+            '9cfb0fd05ecbe907131e43bed5df53309eaae0e5e7466cd9c80d939980ea8be0')
 
 pkgver() {
   cd "${pkgname%-git}"
@@ -61,6 +64,8 @@ build() {
 }
 
 package() {
+  install -D -m644 vicinae.service -t "${pkgdir}/usr/lib/systemd/system"
+
   cd "${pkgname%-git}"
   DESTDIR="$pkgdir" cmake --install build
 }
