@@ -7,7 +7,7 @@ service_param() {
     systemctl --user show -p "${param}" --value "${SERVICE_NAME}"
 }
 
-if [[ "${RUNNING_AS_SERVICE}" != "1" && "$1" = "serve" ]]; then
+if [[ "${RUNNING_AS_SERVICE}" != "1" && "$1" = "server" ]]; then
     systemctl --user daemon-reload
 
     LOAD_STATE=$(service_param "LoadState")
