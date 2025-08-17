@@ -2,7 +2,7 @@
 
 pkgname=vicinae-git
 pkgver=0.2.0.r3.g4ed9ced
-pkgrel=2
+pkgrel=3
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
