@@ -32,6 +32,8 @@ package() {
 
   # Themes
   cp -r "$srcdir/share/$pkgname" "$pkgdir/usr/share/"
+  mkdir -p ~/.config/vicinae/themes
+  ln -s /usr/share/vicinae/themes/* ~/.config/vicinae/themes
 
   # Systemdd Service
   install -Dm644 "$srcdir/$pkgname.service" "$pkgdir/usr/lib/systemd/system/$pkgname.service"
