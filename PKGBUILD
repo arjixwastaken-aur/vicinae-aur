@@ -1,7 +1,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae
-pkgver=v0.1.1
+pkgver=v0.2.0
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
