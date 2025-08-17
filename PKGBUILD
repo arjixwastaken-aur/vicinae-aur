@@ -1,7 +1,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae-git
-pkgver=0.2.0.r1.gdb11162
+pkgver=0.2.0.r3.g4ed9ced
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
