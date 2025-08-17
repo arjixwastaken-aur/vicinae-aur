@@ -1,7 +1,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae
-pkgver=v0.2.0
+pkgver=v0.2.1
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
@@ -18,7 +18,7 @@ source=(
 )
 
 sha256sums=(
-  '562c9fbd5847ecffc5613b44e9f581686920674f3e7e068867fd658ec0a9169c'
+  '736602fe2db2ba5dc829ab147b12ab5b4a3cec713c5fad1a073912f88ee79d02'
   'SKIP'
   'SKIP'
 )
