@@ -20,6 +20,7 @@ depends=(
 )
 makedepends=(
   'git'
+  'sed'
   'cmake'
   'ninja'
   'nvm'
@@ -27,11 +28,10 @@ makedepends=(
 )
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-install=vicinae.install
-source=("git+${url}.git" "vicinae.desktop" "vicinae.service")
+source=("git+${url}.git" "vicinae.sh" "vicinae.service")
 sha256sums=('SKIP'
-            '184c7c1d887168e34c15e9d9a629e07690f98bc529cd1633ed6546b07afb8fe5'
-            '9cfb0fd05ecbe907131e43bed5df53309eaae0e5e7466cd9c80d939980ea8be0')
+            '70dee3726b67deb01984522efe8a50a3edc53a8ca857cc9e961edc4d31940684'
+            '111ee271bf48cdc1a384316a09bdf4d78a5ce0c34db1b28c6a9e81453c2d8b38')
 
 pkgver() {
   cd "${pkgname%-git}"
@@ -59,13 +59,20 @@ build() {
   cd "${pkgname%-git}"
 
   _ensure_local_nvm
-  cmake -G Ninja -B build
+  cmake -G Ninja -B build -DCMAKE_INSTALL_PREFIX=/opt/${pkgname}
   cmake --build build
 }
 
 package() {
   install -D -m644 vicinae.service -t "${pkgdir}/usr/lib/systemd/system"
+  install -D -m755 vicinae.sh "$pkgdir/usr/local/bin/vicinae"
+  sed -i "s/PKGNAME/$pkgname/" "$pkgdir/usr/local/bin/vicinae"
 
   cd "${pkgname%-git}"
   DESTDIR="$pkgdir" cmake --install build
+
+  if [[ -d "$pkgdir/opt/${pkgname}/share" ]]; then
+    install -d "$pkgdir/usr"
+    mv "$pkgdir/opt/${pkgname}/share" "$pkgdir/usr/"
+  fi
 }

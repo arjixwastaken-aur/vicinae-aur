@@ -7,6 +7,7 @@ Requisite=graphical-session.target
 
 [Service]
 Type=simple
+Environment=RUNNING_AS_SERVICE=1
 ExecStart=/usr/local/bin/vicinae server
 
 [Install]

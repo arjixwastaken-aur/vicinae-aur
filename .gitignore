@@ -1,0 +1,5 @@
+.vscode/
+src/
+vicinae/
+*.tar*
+*.custom
