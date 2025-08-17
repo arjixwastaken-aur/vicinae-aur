@@ -33,9 +33,9 @@ package() {
   # Themes
   cp -r "$srcdir/share/$pkgname" "$pkgdir/usr/share/"
   if [ ! -d "$HOME/.config/vicinae/themes/" ]; then
-    ln -s /usr/share/vicinae/themes/* $HOME/.config/vicinae/themes
+    mkdir -p $HOME/.config/vicinae/themes
+    ln -sf /usr/share/vicinae/themes/* $HOME/.config/vicinae/themes
   fi
-  mkdir -p $HOME/.config/vicinae/themes
 
   # Systemd Service
   install -Dm644 "$srcdir/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
