@@ -26,7 +26,7 @@ pkgbase = vicinae-git
 	source = vicinae.sh
 	source = vicinae.service
 	sha256sums = SKIP
-	sha256sums = 8eb4851597cc0f95147eb8fd61a09bd0630715f0e4c104e83edcc7fe44fd336c
+	sha256sums = d756f6610c2e0e34ccba344e2377f3f0b078c0fb2ab764f7aaebafda38f4a875
 	sha256sums = 111ee271bf48cdc1a384316a09bdf4d78a5ce0c34db1b28c6a9e81453c2d8b38
 
 pkgname = vicinae-git
