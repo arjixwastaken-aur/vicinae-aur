@@ -39,7 +39,6 @@ package() {
 
   # Systemd Service
   install -Dm644 "$srcdir/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
-  systemctl --user daemon-reload
 
   # SVG icon
   install -Dm644 "$srcdir/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
