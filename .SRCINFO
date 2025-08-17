@@ -1,6 +1,6 @@
 pkgbase = vicinae
 	pkgdesc = Raycast like FOSS app on Linux
-	pkgver = v0.1.0
+	pkgver = v0.1.1
 	pkgrel = 1
 	url = https://github.com/vicinaehq/vicinae
 	arch = x86_64
@@ -14,12 +14,12 @@ pkgbase = vicinae
 	depends = libqalculate
 	depends = minizip
 	depends = qtkeychain-qt6
-	provides = vicinae=v0.1.0
+	provides = vicinae=v0.1.1
 	conflicts = vicinae-git
-	source = https://github.com/vicinaehq/vicinae/releases/download/v0.1.0/vicinae-linux-x86_64-v0.1.0.tar.gz
+	source = https://github.com/vicinaehq/vicinae/releases/download/v0.1.1/vicinae-linux-x86_64-v0.1.1.tar.gz
 	source = https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/vicinae.service
 	source = https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/vicinae/icons/vicinae.svg
-	sha256sums = 1d8ca75c4477294b4c6e11c930cb7300808fb167d05c2ddc93682a417d80403d
+	sha256sums = 157d0dd15b1634439c4d37820b38c661cc4bd2e52671c8540437d0e5d5c655fb
 	sha256sums = SKIP
 	sha256sums = SKIP
 
