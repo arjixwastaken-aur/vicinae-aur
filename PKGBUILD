@@ -30,7 +30,7 @@ provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 source=("git+${url}.git" "vicinae.sh" "vicinae.service")
 sha256sums=('SKIP'
-            '70dee3726b67deb01984522efe8a50a3edc53a8ca857cc9e961edc4d31940684'
+            '2dddc4dd1b68c24df1565b5338989762c475d640bbb53f02113fe8d61555d243'
             '111ee271bf48cdc1a384316a09bdf4d78a5ce0c34db1b28c6a9e81453c2d8b38')
 
 pkgver() {
