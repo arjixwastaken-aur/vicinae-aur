@@ -2,20 +2,20 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae-bin
-pkgver=v0.3.0
+pkgver=0.3.0
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL3')
 depends=(nodejs qt6-base qt6-svg protobuf cmark-gfm layer-shell-qt libqalculate minizip qtkeychain-qt6)
-provides=("vicinae=$pkgver")
-conflicts=('vicinae')
+provides=("vicinae")
+conflicts=("vicinae")
 
 source=(
-  "${url}/releases/download/$pkgver/${pkgname%-bin}-linux-$arch-$pkgver.tar.gz"
-  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/tags/$pkgver/extra/vicinae.service"
-  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/tags/$pkgver/vicinae/icons/vicinae.svg"
+  "${url}/releases/download/v$pkgver/${pkgname%-bin}-linux-$arch-v$pkgver.tar.gz"
+  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/tags/v$pkgver/extra/vicinae.service"
+  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/tags/v$pkgver/vicinae/icons/vicinae.svg"
 )
 
 sha256sums=('d0ede6366575a1a48fe2c89ef87e768db79f701227c92b130275dd30e9cf2e18'
