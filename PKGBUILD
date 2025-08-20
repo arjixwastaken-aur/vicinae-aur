@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -27,7 +27,7 @@ makedepends=(
   'rapidfuzz-cpp'
 )
 provides=("vicinae=$pkgver")
-conflicts=('vicinae-git')
+conflicts=(vicinae)
 source=(
   "${url}/archive/refs/tags/v$pkgver.tar.gz"
 )
