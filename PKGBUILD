@@ -2,41 +2,61 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=v0.3.0
+pkgver=0.3.0
 pkgrel=1
-pkgdesc="Raycast like FOSS app on Linux"
+pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL3')
-depends=(nodejs qt6-base qt6-svg protobuf cmark-gfm layer-shell-qt libqalculate minizip qtkeychain-qt6)
+depends=(
+  'nodejs'
+  'qt6-base'
+  'qt6-svg'
+  'protobuf'
+  'cmark-gfm'
+  'layer-shell-qt'
+  'libqalculate'
+  'minizip'
+  'qtkeychain-qt6'
+)
+makedepends=(
+  'git'
+  'cmake'
+  'ninja'
+  'npm'
+  'rapidfuzz-cpp'
+)
 provides=("vicinae=$pkgver")
 conflicts=('vicinae-git')
-
 source=(
-  "${url}/releases/download/$pkgver/$pkgname-linux-$arch-$pkgver.tar.gz"
-  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/vicinae.service"
-  "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/vicinae/icons/vicinae.svg"
+  "${url}/archive/refs/tags/v$pkgver.tar.gz"
 )
 
 sha256sums=(
-  'd0ede6366575a1a48fe2c89ef87e768db79f701227c92b130275dd30e9cf2e18'
-  '4597dcdc30ef283f994c5a5fa65725f9bae7627afc1e12a2aa9bef24f8fa6eee'
-  '9b3957bd45e7508dc2d4e16d3186fc679752c0554ad43755cf0044e4f6484dab'
+  '3b05e616156e6679600e0409ec156be7a7c86ec6fe1f559cd672f694525fd475'
 )
+
+build() {
+  cd $pkgname-$pkgver || exit
+  cmake -G Ninja -B build
+  cmake --build build
+}
 
 package() {
   # Bin
-  install -Dm755 "$srcdir/bin/$pkgname" "$pkgdir/usr/bin/$pkgname"
-
-  # Desktop entry
-  install -Dm644 "$srcdir/share/applications/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+  install -Dm755 "$srcdir/$pkgname-$pkgver/build/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
 
   # Themes
-  cp -r "$srcdir/share/$pkgname" "$pkgdir/usr/share/"
+  mkdir -p $pkgdir/usr/share/$pkgname
+  cp -r "$srcdir/$pkgname-$pkgver/extra/themes/" "$pkgdir/usr/share/$pkgname/"
+
+  # Desktop entry
+  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
 
   # Systemd Service
-  install -Dm644 "$srcdir/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
+  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
 
   # SVG icon
-  install -Dm644 "$srcdir/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+  install -Dm644 "$srcdir/$pkgname-$pkgver/$pkgname/icons/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+
 }
