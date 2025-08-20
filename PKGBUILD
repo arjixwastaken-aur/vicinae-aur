@@ -27,7 +27,7 @@ makedepends=(
   'rapidfuzz-cpp'
 )
 provides=("vicinae=$pkgver")
-conflicts=('vicinae-bin' 'vicinae-git')
+conflicts=('vicinae')
 source=(
   "${url}/archive/refs/tags/v$pkgver.tar.gz"
 )
