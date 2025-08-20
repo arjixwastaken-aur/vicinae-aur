@@ -20,19 +20,10 @@ depends=(
   'qtkeychain-qt6'
 )
 makedepends=(
-  'base-devel'
+  'git'
   'cmake'
   'ninja'
-  'nodejs'
   'npm'
-  'qt6-base'
-  'qt6-svg'
-  'protobuf'
-  'cmark-gfm'
-  'layer-shell-qt'
-  'libqalculate'
-  'minizip'
-  'qtkeychain-qt6'
   'rapidfuzz-cpp'
 )
 provides=("${pkgname%-git}")
