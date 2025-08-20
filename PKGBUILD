@@ -1,4 +1,5 @@
 # Maintainer: Arjix <me@arjix.dev>
+# Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae-git
 pkgver=0.3.0.r8.g58f3684
