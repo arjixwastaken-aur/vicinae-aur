@@ -9,7 +9,7 @@ arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL3')
 depends=(nodejs qt6-base qt6-svg protobuf cmark-gfm layer-shell-qt libqalculate minizip qtkeychain-qt6)
-provides=("vicinae-bin=$pkgver")
+provides=("vicinae=$pkgver")
 conflicts=('vicinae')
 
 source=(

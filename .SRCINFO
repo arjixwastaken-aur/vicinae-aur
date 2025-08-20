@@ -14,7 +14,7 @@ pkgbase = vicinae-bin
 	depends = libqalculate
 	depends = minizip
 	depends = qtkeychain-qt6
-	provides = vicinae-bin=v0.3.0
+	provides = vicinae=v0.3.0
 	conflicts = vicinae
 	source = https://github.com/vicinaehq/vicinae/releases/download/v0.3.0/vicinae-linux-x86_64-v0.3.0.tar.gz
 	source = https://raw.githubusercontent.com/vicinaehq/vicinae/refs/tags/v0.3.0/extra/vicinae.service
