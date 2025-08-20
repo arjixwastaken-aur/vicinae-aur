@@ -1,4 +1,4 @@
-pkgbase = vicinae
+pkgbase = vicinae-git
 	pkgdesc = A focused launcher for your desktop — native, fast, extensible
 	pkgver = 0.3.0.r11.g4f1ec77
 	pkgrel = 1

@@ -1,8 +1,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 # Maintainer: cilgin <cilgincc@outlook.com>
 
-pkgbase=vicinae
-pkgname=${pkgbase}-git
+pkgname=vicinae-git
 pkgver=0.3.0.r11.g4f1ec77
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
@@ -28,13 +27,13 @@ makedepends=(
   'nvm'
   'rapidfuzz-cpp'
 )
-provides=("${pkgbase}")
-conflicts=("${pkgbase}")
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
 source=("git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgbase}"
+  cd "${pkgname%-git}"
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
@@ -50,15 +49,15 @@ _ensure_local_nvm() {
 }
 
 prepare() {
-  cd "${pkgbase}"
+  cd "${pkgname%-git}"
   _ensure_local_nvm
   nvm install node
 
-  sed -i 's/WantedBy=multi-user.target/WantedBy=graphical-session.target/' "extra/$pkgbase.service"
+  sed -i 's/WantedBy=multi-user.target/WantedBy=graphical-session.target/' "extra/${pkgname%-git}.service"
 }
 
 build() {
-  cd "${pkgbase}"
+  cd "${pkgname%-git}"
 
   _ensure_local_nvm
   cmake -G Ninja -B build
@@ -66,16 +65,16 @@ build() {
 }
 
 package() {
-  cd "${pkgbase}"
+  cd "${pkgname%-git}"
 
   # Desktop entry
-  install -Dm644 "extra/$pkgbase.desktop" "$pkgdir/usr/share/applications/$pkgbase.desktop"
+  install -Dm644 "extra/${pkgname%-git}.desktop" "$pkgdir/usr/share/applications/${pkgname%-git}.desktop"
 
   # Systemd Service
-  install -Dm644 "extra/$pkgbase.service" "$pkgdir/usr/lib/systemd/user/$pkgbase.service"
+  install -Dm644 "extra/${pkgname%-git}.service" "$pkgdir/usr/lib/systemd/user/${pkgname%-git}.service"
 
   # SVG icon
-  install -Dm644 "vicinae/icons/$pkgbase.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgbase.svg"
+  install -Dm644 "vicinae/icons/${pkgname%-git}.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname%-git}.svg"
   
   DESTDIR="$pkgdir" cmake --install build
 }
