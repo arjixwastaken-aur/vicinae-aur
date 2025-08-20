@@ -27,7 +27,7 @@ makedepends=(
   'rapidfuzz-cpp'
 )
 provides=("${pkgname%-git}")
-conflicts=('vicinae' 'vicinae-bin')
+conflicts=('vicinae')
 source=("git+${url}.git")
 sha256sums=('SKIP')
 
