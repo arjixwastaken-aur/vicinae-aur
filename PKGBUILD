@@ -1,8 +1,9 @@
 # Maintainer: Arjix <me@arjix.dev>
 # Maintainer: cilgin <cilgincc@outlook.com>
 
-pkgname=vicinae-git
-pkgver=0.3.0.r8.g58f3684
+pkgbase=vicinae
+pkgname=${pkgbase}-git
+pkgver=0.3.0.r11.g4f1ec77
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -27,15 +28,13 @@ makedepends=(
   'nvm'
   'rapidfuzz-cpp'
 )
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("git+${url}.git" "vicinae.sh" "vicinae.service")
-sha256sums=('SKIP'
-            'd756f6610c2e0e34ccba344e2377f3f0b078c0fb2ab764f7aaebafda38f4a875'
-            '111ee271bf48cdc1a384316a09bdf4d78a5ce0c34db1b28c6a9e81453c2d8b38')
+provides=("${pkgbase}")
+conflicts=("${pkgbase}")
+source=("git+${url}.git")
+sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname%-git}"
+  cd "${pkgbase}"
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
@@ -51,29 +50,32 @@ _ensure_local_nvm() {
 }
 
 prepare() {
-  cd "${pkgname%-git}"
+  cd "${pkgbase}"
   _ensure_local_nvm
   nvm install node
+
+  sed -i 's/WantedBy=multi-user.target/WantedBy=graphical-session.target/' "extra/$pkgbase.service"
 }
 
 build() {
-  cd "${pkgname%-git}"
+  cd "${pkgbase}"
 
   _ensure_local_nvm
-  cmake -G Ninja -B build -DCMAKE_INSTALL_PREFIX=/opt/${pkgname}
+  cmake -G Ninja -B build
   cmake --build build
 }
 
 package() {
-  install -D -m644 vicinae.service -t "${pkgdir}/usr/lib/systemd/system"
-  install -D -m755 vicinae.sh "$pkgdir/usr/local/bin/vicinae"
-  sed -i "s/PKGNAME/$pkgname/" "$pkgdir/usr/local/bin/vicinae"
+  cd "${pkgbase}"
 
-  cd "${pkgname%-git}"
+  # Desktop entry
+  install -Dm644 "extra/$pkgbase.desktop" "$pkgdir/usr/share/applications/$pkgbase.desktop"
+
+  # Systemd Service
+  install -Dm644 "extra/$pkgbase.service" "$pkgdir/usr/lib/systemd/user/$pkgbase.service"
+
+  # SVG icon
+  install -Dm644 "vicinae/icons/$pkgbase.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgbase.svg"
+  
   DESTDIR="$pkgdir" cmake --install build
-
-  if [[ -d "$pkgdir/opt/${pkgname}/share" ]]; then
-    install -d "$pkgdir/usr"
-    mv "$pkgdir/opt/${pkgname}/share" "$pkgdir/usr/"
-  fi
 }
