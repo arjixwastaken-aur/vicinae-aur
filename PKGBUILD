@@ -1,4 +1,5 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
+# Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
 pkgver=v0.3.0
