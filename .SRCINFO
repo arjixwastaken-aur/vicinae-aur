@@ -19,8 +19,7 @@ pkgbase = vicinae
 	depends = libqalculate
 	depends = minizip
 	depends = qtkeychain-qt6
-	provides = vicinae=0.3.0
-	conflicts = vicinae
+	provides = vicinae
 	source = https://github.com/vicinaehq/vicinae/archive/refs/tags/v0.3.0.tar.gz
 	sha256sums = 3b05e616156e6679600e0409ec156be7a7c86ec6fe1f559cd672f694525fd475
 
