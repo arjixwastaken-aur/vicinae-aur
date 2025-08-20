@@ -32,12 +32,12 @@ source=("git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname%-git}"
+  cd "${pkgname%-git}" || exit
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "${pkgname%-git}"
+  cd "${pkgname%-git}" || exit
   cmake -G Ninja -B build
   cmake --build build
 }
