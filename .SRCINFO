@@ -21,6 +21,7 @@ pkgbase = vicinae-git
 	depends = qtkeychain-qt6
 	provides = vicinae
 	conflicts = vicinae
+	conflicts = vicinae-bin
 	source = git+https://github.com/vicinaehq/vicinae.git
 	sha256sums = SKIP
 
