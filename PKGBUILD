@@ -20,11 +20,19 @@ depends=(
   'qtkeychain-qt6'
 )
 makedepends=(
-  'git'
-  'sed'
+  'base-devel'
   'cmake'
   'ninja'
-  'nvm'
+  'nodejs'
+  'npm'
+  'qt6-base'
+  'qt6-svg'
+  'protobuf'
+  'cmark-gfm'
+  'layer-shell-qt'
+  'libqalculate'
+  'minizip'
+  'qtkeychain-qt6'
   'rapidfuzz-cpp'
 )
 provides=("${pkgname%-git}")
@@ -37,42 +45,27 @@ pkgver() {
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
-_ensure_local_nvm() {
-  # let's be sure we are starting clean
-  which nvm >/dev/null 2>&1 && nvm deactivate && nvm unload
-  export NVM_DIR="${srcdir}/.nvm"
-
-  # The init script returns 3 if version specified
-  # in ./.nvmrc is not (yet) installed in $NVM_DIR
-  # but nvm itself still gets loaded ok
-  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
-}
-
-prepare() {
-  cd "${pkgname%-git}"
-  _ensure_local_nvm
-  nvm install node
-}
-
 build() {
   cd "${pkgname%-git}"
-
-  _ensure_local_nvm
   cmake -G Ninja -B build
   cmake --build build
 }
 
 package() {
-  cd "${pkgname%-git}"
+  # Bin
+  install -Dm755 "$srcdir/${pkgname%-git}/build/${pkgname%-git}/${pkgname%-git}" "$pkgdir/usr/bin/${pkgname%-git}"
+
+  # Themes
+  mkdir -p $pkgdir/usr/share/${pkgname%-git}
+  cp -r "$srcdir/${pkgname%-git}/extra/themes/" "$pkgdir/usr/share/${pkgname%-git}/"
 
   # Desktop entry
-  install -Dm644 "extra/${pkgname%-git}.desktop" "$pkgdir/usr/share/applications/${pkgname%-git}.desktop"
+  install -Dm644 "$srcdir/${pkgname%-git}/extra/${pkgname%-git}.desktop" "$pkgdir/usr/share/applications/${pkgname%-git}.desktop"
 
   # Systemd Service
-  install -Dm644 "extra/${pkgname%-git}.service" "$pkgdir/usr/lib/systemd/user/${pkgname%-git}.service"
+  install -Dm644 "$srcdir/${pkgname%-git}/extra/${pkgname%-git}.service" "$pkgdir/usr/lib/systemd/user/${pkgname%-git}.service"
 
   # SVG icon
-  install -Dm644 "vicinae/icons/${pkgname%-git}.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname%-git}.svg"
-  
-  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$srcdir/${pkgname%-git}/${pkgname%-git}/icons/${pkgname%-git}.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname%-git}.svg"
+
 }
