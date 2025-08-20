@@ -20,7 +20,7 @@ pkgbase = vicinae
 	source = https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/vicinae.service
 	source = https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/vicinae/icons/vicinae.svg
 	sha256sums = d0ede6366575a1a48fe2c89ef87e768db79f701227c92b130275dd30e9cf2e18
-	sha256sums = d9c598cf0070cb358df7937e4d2576f449d0cd39e01cc01ebc7772d032b59b7c
+	sha256sums = 4597dcdc30ef283f994c5a5fa65725f9bae7627afc1e12a2aa9bef24f8fa6eee
 	sha256sums = 9b3957bd45e7508dc2d4e16d3186fc679752c0554ad43755cf0044e4f6484dab
 
 pkgname = vicinae
