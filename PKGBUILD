@@ -2,7 +2,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae-git
-pkgver=0.3.0.r18.g0222550
+pkgver=0.4.0.r5.g0015949
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -45,6 +45,7 @@ build() {
 package() {
   # Bin
   install -Dm755 "$srcdir/${pkgname%-git}/build/${pkgname%-git}/${pkgname%-git}" "$pkgdir/usr/bin/${pkgname%-git}"
+  install -Dm755 "$srcdir/${pkgname%-git}/build/wlr-clip/vicinae-wlr-clip/${pkgname%-git}" "$pkgdir/usr/bin/vicinae-wlr-clip"
 
   # Themes
   mkdir -p $pkgdir/usr/share/${pkgname%-git}
