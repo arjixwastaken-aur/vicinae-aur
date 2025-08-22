@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.4.0
+pkgver=0.5.0
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -32,7 +32,7 @@ source=(
 )
 
 sha256sums=(
-  '3cc773b2c24d35d117cacd0c6b768ab854b61375342254f8e00fc08313195832'
+  '50e3713fe2b5142409cc0909e5f0a6e82981631355c1634e90bd721cf69687fd'
 )
 
 build() {
@@ -44,7 +44,7 @@ build() {
 package() {
   # Bin
   install -Dm755 "$srcdir/$pkgname-$pkgver/build/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
-  install -Dm755 "$srcdir/bin/vicinae-wlr-clip" "$pkgdir/usr/bin/vicinae-wlr-clip"
+  install -Dm755 "$srcdir/$pkgname-$pkgver/build/wlr-clip/vicinae-wlr-clip" "$pkgdir/usr/bin/vicinae-wlr-clip"
 
   # Themes
   mkdir -p $pkgdir/usr/share/$pkgname
