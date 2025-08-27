@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.7.0
+pkgver=0.7.1
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -25,17 +25,27 @@ makedepends=(
   'ninja'
   'npm'
   'rapidfuzz-cpp'
+  'jq'
 )
 provides=("vicinae")
 source=(
-  "${url}/archive/refs/tags/v$pkgver.tar.gz"
+  "${pkgname}-v${pkgver}.tar.gz::${url}/archive/refs/tags/v$pkgver.tar.gz"
+  "${pkgname}-v${pkgver}-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}"
 )
 
-sha256sums=('264f3f13b5dc1006c4f1b659355fd616e1757c03c038b2087ef475e7a241fd6e')
+sha256sums=('6209691346362ee68013261cc35f1605edc3300daaa77d4fc716a8c99cf4e5d6'
+            '138bfc207fd18c07923d6300bdbfcff225ace7f29c65209e67d18f03fd1051e9')
 
 build() {
+  SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
+
   cd $pkgname-$pkgver || exit
-  cmake -G Ninja -B build
+  cmake -G Ninja \
+    -DVICINAE_GIT_TAG="v${pkgver}" \
+    -DVICINAE_GIT_COMMIT_HASH="${SHA:0:7}" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -B build
+
   cmake --build build
 }
 
