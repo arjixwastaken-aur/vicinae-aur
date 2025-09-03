@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.8.3
+pkgver=0.8.4
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -33,8 +33,8 @@ source=(
   "${pkgname}-v${pkgver}-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}"
 )
 
-sha256sums=('62d1bf7d2e36dfbca5f39d0124bcd5018e3a6ee69c87f8f8d77b03e0f4c9c158'
-            '95ca56f76cfaf870ad26bdb27641dd99d8e7f1f1ecc25553814df3f0cb9e8135')
+sha256sums=('3e353507ade6269451a30ee36671decae31f8e8edc68e18d0177abfdcd54d1cf'
+            'ecc8b7919b9b36cadffeaab272aad8dc206c6a2161285cbeac0e898b28539932')
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
