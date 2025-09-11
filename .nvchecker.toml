@@ -1,0 +1,4 @@
+[vicinae-bin]
+source = "git"
+git = "https://github.com/vicinaehq/vicinae.git"
+prefix = "v"
