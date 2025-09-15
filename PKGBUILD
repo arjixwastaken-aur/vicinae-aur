@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.9.6
+pkgver=0.10.0
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -33,8 +33,8 @@ source=(
   "${pkgname}-v${pkgver}-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}"
 )
 
-sha256sums=('06c470fb1358f294fb33325399f0a94e82072a6ea81ed01966a94926a491e817'
-            'c4dab27d36a5b09984f2356eadc856a085511210e4fdd69af06690f7fc5dd3ba')
+sha256sums=('21d6dd4866392c17dc6c96628ea917f6f558854da75beac3332a7f3e0b4f5f56'
+            'b5701c1942260c9b2e016037b8a2052d1b6af89058c06bac5da1e8fa06633127')
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
@@ -66,5 +66,4 @@ package() {
 
   # SVG icon
   install -Dm644 "$srcdir/$pkgname-$pkgver/$pkgname/icons/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
-
 }
