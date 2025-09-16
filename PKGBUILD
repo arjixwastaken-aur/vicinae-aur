@@ -2,7 +2,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae-git
-pkgver=0.9.4.r8.gb77a360
+pkgver=0.10.0.r1.g24a71ca
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
