@@ -1,6 +1,6 @@
 pkgbase = vicinae
 	pkgdesc = A focused launcher for your desktop — native, fast, extensible
-	pkgver = 0.11.0
+	pkgver = 0.12.0
 	pkgrel = 1
 	url = https://github.com/vicinaehq/vicinae
 	arch = x86_64
@@ -21,9 +21,9 @@ pkgbase = vicinae
 	depends = minizip
 	depends = qtkeychain-qt6
 	provides = vicinae
-	source = vicinae-v0.11.0.tar.gz::https://github.com/vicinaehq/vicinae/archive/refs/tags/v0.11.0.tar.gz
-	source = vicinae-v0.11.0-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v0.11.0
-	sha256sums = 9c470f174991c8475ad183f1eccbff10a30cf882a48a4b80ee1e90f5d2d6e571
-	sha256sums = c1f308dbca55ebabb5d74935878cfc97926d4b7da69e828ce31f85d053fdd336
+	source = vicinae-v0.12.0.tar.gz::https://github.com/vicinaehq/vicinae/archive/refs/tags/v0.12.0.tar.gz
+	source = vicinae-v0.12.0-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v0.12.0
+	sha256sums = 5f7cb66e77ed1d6e808470162f081bef037c43a860e960e8a01176702f9fcf91
+	sha256sums = 8c4bbdabe48a10c1182ed441b4ea1743ec5ebd4566901c458995ec49dc018c6e
 
 pkgname = vicinae
