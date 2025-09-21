@@ -22,6 +22,8 @@ pkgbase = vicinae-git
 	provides = vicinae
 	conflicts = vicinae
 	source = git+https://github.com/vicinaehq/vicinae.git
+	source = vicinae.hook
 	sha256sums = SKIP
+	sha256sums = 08dc48891499fd35fdaaac6e3c59b72a7173c46861b00db9d8adeaaa6767e24d
 
 pkgname = vicinae-git

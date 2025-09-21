@@ -28,8 +28,8 @@ makedepends=(
 )
 provides=("vicinae")
 conflicts=("vicinae")
-source=("git+${url}.git")
-sha256sums=('SKIP')
+source=("git+${url}.git" "vicinae.hook")
+sha256sums=('SKIP' '08dc48891499fd35fdaaac6e3c59b72a7173c46861b00db9d8adeaaa6767e24d')
 
 pkgver() {
   cd "${pkgname%-git}" || exit
@@ -59,5 +59,8 @@ package() {
 
   # SVG icon
   install -Dm644 "$srcdir/${pkgname%-git}/${pkgname%-git}/icons/${pkgname%-git}.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/${pkgname%-git}.svg"
+
+  # Pacman hook
+  install -Dm644 "$srcdir/${pkgname%-git}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-git}.hook"
 
 }
