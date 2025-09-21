@@ -31,10 +31,13 @@ provides=("vicinae")
 source=(
   "${pkgname}-v${pkgver}.tar.gz::${url}/archive/refs/tags/v$pkgver.tar.gz"
   "${pkgname}-v${pkgver}-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}"
+  "vicinae.hook"
 )
 
 sha256sums=('486907a71f187661c253e927231295478465b85f6a0250d853642271bccaf970'
-            '832bb046d0543b1651e63d0370a830caccc3b671248daf5d3cab682fdde53eef')
+            '832bb046d0543b1651e63d0370a830caccc3b671248daf5d3cab682fdde53eef'
+            '2997c7441c4b98b880155303315955d99efdd08e791e36e52a5f4c2b1e3b26b9'
+          )
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
@@ -66,4 +69,7 @@ package() {
 
   # SVG icon
   install -Dm644 "$srcdir/$pkgname-$pkgver/$pkgname/icons/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+
+  # Pacman hook
+    install -Dm644 "$srcdir/${pkgname}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname}.hook"
 }
