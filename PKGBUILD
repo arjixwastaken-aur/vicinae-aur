@@ -36,8 +36,7 @@ source=(
 
 sha256sums=('486907a71f187661c253e927231295478465b85f6a0250d853642271bccaf970'
             '832bb046d0543b1651e63d0370a830caccc3b671248daf5d3cab682fdde53eef'
-            '13d44abe60c20667b90c2bbca4f8ad1e4c39f8c6ace697807c8c397d68037894'
-          )
+            '13d44abe60c20667b90c2bbca4f8ad1e4c39f8c6ace697807c8c397d68037894')
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
