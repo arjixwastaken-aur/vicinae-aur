@@ -1,4 +1,5 @@
 [vicinae-bin]
-source = "git"
-git = "https://github.com/vicinaehq/vicinae.git"
+source = "github"
+github = "vicinaehq/vicinae"
+use_latest_release = true
 prefix = "v"
