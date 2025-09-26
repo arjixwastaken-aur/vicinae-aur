@@ -2,7 +2,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae-git
-pkgver=0.12.2.r1.gb3f0fb9
+pkgver=0.12.2.r9.gb2f9582
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -29,7 +29,8 @@ makedepends=(
 provides=("vicinae")
 conflicts=("vicinae")
 source=("git+${url}.git" "vicinae.hook")
-sha256sums=('SKIP' '08dc48891499fd35fdaaac6e3c59b72a7173c46861b00db9d8adeaaa6767e24d')
+sha256sums=('SKIP'
+            '08dc48891499fd35fdaaac6e3c59b72a7173c46861b00db9d8adeaaa6767e24d')
 
 pkgver() {
   cd "${pkgname%-git}" || exit
