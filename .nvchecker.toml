@@ -1,5 +1,5 @@
 [vicinae]
 source = "github"
 github = "vicinaehq/vicinae"
-prefix = "v"
 use_latest_release = true
+prefix = "v"
