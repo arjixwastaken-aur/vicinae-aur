@@ -6,4 +6,4 @@ Target = vicinae
 [Action]
 Description = Restarting vicinae.service as a user unit if enabled/active...
 When = PostTransaction
-Exec = /usr/bin/bash -c '/usr/bin/loginctl list-users --no-legend | /usr/bin/awk "{print \$2}" | /usr/bin/xargs -I {} /usr/bin/runuser -u {} -- sh -c "/usr/bin/systemctl --user is-enabled --quiet vicinae.service && /usr/bin/systemctl --user restart vicinae.service"'
+Exec = /usr/bin/bash -c '/usr/bin/loginctl list-users --no-legend | /usr/bin/awk "{print \$2}" | /usr/bin/xargs -I {} /usr/bin/runuser -u {} -- sh -c "/usr/bin/systemctl --user is-enabled vicinae.service && /usr/bin/systemctl --user restart vicinae.service"' || true

@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.13.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -36,7 +36,7 @@ source=(
 
 sha256sums=('144e335d4d8cac31f452d48616535f8b7303f531a627dffa8dcccd8229e0f688'
             'c1f3ae0d87b8f0cd393c5fe5007eb5894ca029945627b77a3774f4244e35e14c'
-            '13d44abe60c20667b90c2bbca4f8ad1e4c39f8c6ace697807c8c397d68037894')
+            '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
