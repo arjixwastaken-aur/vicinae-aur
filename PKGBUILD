@@ -3,7 +3,7 @@
 
 pkgname=vicinae-git
 pkgver=0.12.2.r9.gb2f9582
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -30,7 +30,7 @@ provides=("vicinae")
 conflicts=("vicinae")
 source=("git+${url}.git" "vicinae.hook")
 sha256sums=('SKIP'
-            '08dc48891499fd35fdaaac6e3c59b72a7173c46861b00db9d8adeaaa6767e24d')
+            'e9697f260d8d848090d0585fd7d29b8a7344964a8d1dfaa0409df260500de864')
 
 pkgver() {
   cd "${pkgname%-git}" || exit
