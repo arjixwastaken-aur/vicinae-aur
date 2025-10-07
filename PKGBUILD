@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.14.1
+pkgver=0.14.2
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -34,8 +34,8 @@ source=(
   "vicinae.hook"
 )
 
-sha256sums=('1025537dadc6c25283aec665e3b438a8b32e3e554d1bc06b9b0a556918d66eb8'
-            '8e793b6a671ebaec468fe83d08c1787567c8b4652fd2abe16835e5cb11a65083'
+sha256sums=('b83d54dadc5dd783ecb2500c227e57a22d30df26fd2bf59865811ca3ed450cae'
+            '9269612c40fce898430c91979efaade6889b3148d5256c831c35b71d411b45bd'
             '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 build() {
@@ -46,6 +46,7 @@ build() {
     -DVICINAE_GIT_TAG="v${pkgver}" \
     -DVICINAE_GIT_COMMIT_HASH="${SHA:0:7}" \
     -DCMAKE_BUILD_TYPE=Release \
+    -DVICINAE_PROVENANCE=aur \
     -B build
 
   cmake --build build
