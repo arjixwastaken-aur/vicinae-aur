@@ -3,7 +3,7 @@
 
 pkgname=vicinae-git
 pkgver=0.15.1.r1.g8cc6e59
-pkgrel=2
+pkgrel=3
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -45,7 +45,7 @@ build() {
 
 package() {
   cd "${pkgname%-git}"
-  DESTDIR="$pkgdir" cmake --install build build
+  DESTDIR="$pkgdir" cmake --install build
 
   # Pacman hook
   install -Dm644 "$srcdir/${pkgname%-git}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-git}.hook"
