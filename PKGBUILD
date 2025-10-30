@@ -3,13 +3,12 @@
 
 pkgname=vicinae-appimage-bin
 pkgver=0.15.7
-pkgrel=3
+pkgrel=4
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
 options=('!debug' '!strip')
 license=('GPL3')
-depends=( fuse )
 makedepends=(jq wget)
 provides=("vicinae")
 conflicts=("vicinae")
