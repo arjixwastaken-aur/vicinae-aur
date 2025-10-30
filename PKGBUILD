@@ -41,6 +41,8 @@ prepare() {
 package() {
   install -dm755 "${pkgdir}/opt"
   cp -a "${srcdir}/squashfs-root" "${pkgdir}/opt/vicinae"
+
+  install -dm644 "${pkgdir}/usr/bin"
   ln -s "/opt/vicinae/AppRun" "${pkgdir}/usr/bin/vicinae"
 
   install -Dm644 "${srcdir}/squashfs-root/vicinae.desktop" "${pkgdir}/usr/share/applications/vicinae.desktop"
