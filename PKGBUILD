@@ -1,33 +1,57 @@
-# Maintainer: cilgin <cilgincc@outlook.com>
 # Maintainer: Arjix <me@arjix.dev>
+# Maintainer: cilgin <cilgincc@outlook.com>
 
-pkgname=vicinae-bin
+pkgname=vicinae-appimage-bin
 pkgver=0.15.7
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
+options=('!debug' '!strip')
 license=('GPL3')
-depends=(nodejs qt6-base qt6-svg layer-shell-qt libqalculate qtkeychain-qt6)
+depends=( fuse )
+makedepends=(jq wget)
 provides=("vicinae")
 conflicts=("vicinae")
 
 source=(
-  "${url}/releases/download/v$pkgver/${pkgname%-bin}-linux-$arch-v$pkgver.tar.gz"
-  "vicinae.hook"
+  "github-release.json::https://api.github.com/repos/vicinaehq/vicinae/releases/latest"
+  "vicinae.sh"
 )
 
-sha256sums=('481ee85d45f27f567c25cd15eb624aa60c9785acc0fb6641938fc36843d15a39'
-            '3e946bcb7f3c2faa3568218987012db336be92acff805a373b6c10bdeaa9e7a8')
+sha256sums=('SKIP'
+            'a2dc7170ebfc13c0407b4e554eb372a77c6fae51770a8fb8d0f600485e11dd72')
+
+pkgver() {
+	jq -r '.tag_name | ltrimstr("v")' github-release.json
+}
+
+prepare() {
+    local asset download_url digest
+    asset=$(jq -r '.assets[] | select(.name | endswith(".AppImage"))' github-release.json)
+
+    download_url=$(echo "$asset" | jq -r '.browser_download_url')
+    digest=$(echo "$asset" | jq -r '.digest | split(":")[1]')
+
+    wget -q "$download_url" -O vicinae.Appimage
+    echo "${digest} vicinae.Appimage" | sha256sum -c || {
+		echo "[ERR]: The downloaded file is corrupt."
+    	exit 1
+    }
+
+    chmod +x vicinae.Appimage
+    ./vicinae.Appimage --appimage-extract
+
+}
 
 package() {
-  install -dm755 "$pkgdir/usr"
-  cp -rp \
-  	  "$srcdir/bin" \
-  	  "$srcdir/share" \
-  	  "$srcdir/lib" \
-  	"$pkgdir/usr"
-  
-  # Pacman hook
-  install -Dm644 "$srcdir/${pkgname%-bin}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-bin}.hook"
+  install -dm755 "${pkgdir}/opt"
+  cp -a "${srcdir}/squashfs-root" "${pkgdir}/opt/vicinae"
+
+  install -Dm755 "${srcdir}/vicinae.sh" "${pkgdir}/usr/bin/vicinae"
+
+  install -Dm644 "${srcdir}/squashfs-root/vicinae.desktop" "${pkgdir}/usr/share/applications/vicinae.desktop"
+  install -Dm644 "${srcdir}/squashfs-root/vicinae.png" "${pkgdir}/usr/share/icons/hicolor/512x512/apps/vicinae.png"
+  install -Dm644 "${srcdir}/squashfs-root/usr/lib/systemd/user/vicinae.service" "${pkgdir}/usr/lib/systemd/user/vicinae.service"
+  cp -a "${srcdir}/squashfs-root/usr/share/" "${pkgdir}/usr/share/"
 }

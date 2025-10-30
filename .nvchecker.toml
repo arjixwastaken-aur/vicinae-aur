@@ -1,5 +1,0 @@
-[vicinae-bin]
-source = "github"
-github = "vicinaehq/vicinae"
-use_latest_release = true
-prefix = "v"
