@@ -15,6 +15,6 @@ pkgbase = vicinae-appimage-bin
 	source = github-release.json::https://api.github.com/repos/vicinaehq/vicinae/releases/latest
 	source = vicinae.sh
 	sha256sums = SKIP
-	sha256sums = a2dc7170ebfc13c0407b4e554eb372a77c6fae51770a8fb8d0f600485e11dd72
+	sha256sums = 3d9cfb1a3876c4724e595265b10e27437ef414013da96b61166b456294d755c5
 
 pkgname = vicinae-appimage-bin

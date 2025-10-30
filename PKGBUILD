@@ -20,7 +20,7 @@ source=(
 )
 
 sha256sums=('SKIP'
-            'a2dc7170ebfc13c0407b4e554eb372a77c6fae51770a8fb8d0f600485e11dd72')
+            '3d9cfb1a3876c4724e595265b10e27437ef414013da96b61166b456294d755c5')
 
 pkgver() {
 	jq -r '.tag_name | ltrimstr("v")' github-release.json
