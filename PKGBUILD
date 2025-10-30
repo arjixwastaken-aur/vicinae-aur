@@ -3,7 +3,7 @@
 
 pkgname=vicinae-appimage-bin
 pkgver=0.15.7
-pkgrel=2
+pkgrel=3
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -14,13 +14,8 @@ makedepends=(jq wget)
 provides=("vicinae")
 conflicts=("vicinae")
 
-source=(
-  "github-release.json::https://api.github.com/repos/vicinaehq/vicinae/releases/latest"
-  "vicinae.sh"
-)
-
-sha256sums=('SKIP'
-            '3d9cfb1a3876c4724e595265b10e27437ef414013da96b61166b456294d755c5')
+source=("github-release.json::https://api.github.com/repos/vicinaehq/vicinae/releases/latest")
+sha256sums=('SKIP')
 
 pkgver() {
 	jq -r '.tag_name | ltrimstr("v")' github-release.json
@@ -47,8 +42,7 @@ prepare() {
 package() {
   install -dm755 "${pkgdir}/opt"
   cp -a "${srcdir}/squashfs-root" "${pkgdir}/opt/vicinae"
-
-  install -Dm755 "${srcdir}/vicinae.sh" "${pkgdir}/usr/bin/vicinae"
+  ln -s "/opt/vicinae/AppRun" "${pkgdir}/usr/bin/vicinae"
 
   install -Dm644 "${srcdir}/squashfs-root/vicinae.desktop" "${pkgdir}/usr/share/applications/vicinae.desktop"
   install -Dm644 "${srcdir}/squashfs-root/vicinae.png" "${pkgdir}/usr/share/icons/hicolor/512x512/apps/vicinae.png"
