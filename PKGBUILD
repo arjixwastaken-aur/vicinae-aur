@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae
-pkgver=0.16.9
+pkgver=0.16.10
 pkgrel=1
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
@@ -34,8 +34,8 @@ source=(
   "vicinae.hook"
 )
 
-sha256sums=('9c973bc2c4bf86b3be8b48b7b359439286429bb10e1f2724a3fdaa24f21aa228'
-            '690c72ca8a0a7b3b4cfef88b8a255c307085a69ae7531a4bbc5dafcb1c2566c9'
+sha256sums=('308d028c6ac648ad0aadc744bd25edca0fb7aad33712087d46868ba7a8ff7bdc'
+            '0b3b0ba82bc57aed5fd99b191deb65880a31a5ce7373a111a0ac63ff7f7e624d'
             '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 build() {
