@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.16.10
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -62,6 +62,9 @@ package() {
 
   # Desktop entry
   install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+  
+  # Deeplink handler
+  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname-url-handler.desktop" "$pkgdir/usr/share/applications/$pkgname-url-handler.desktop"
 
   # Systemd Service
   install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
