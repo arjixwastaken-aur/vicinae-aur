@@ -17,7 +17,7 @@ source=(
   "vicinae.hook"
 )
 
-sha256sums=('ed08b65b4db2d1a97cf057367cd148fe5a38a2c50630b129ed9c6b4e3ad4cede'
+sha256sums=('5d23da5b66cc626f1c21635236ec723ee560d405a13e507c84708c220875186b'
   '3e946bcb7f3c2faa3568218987012db336be92acff805a373b6c10bdeaa9e7a8')
 
 package() {
