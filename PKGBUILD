@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.16.11
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -18,6 +18,7 @@ depends=(
   'libqalculate'
   'minizip'
   'qtkeychain-qt6'
+  'libxml2'
 )
 makedepends=(
   'git'
