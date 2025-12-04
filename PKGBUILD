@@ -35,8 +35,8 @@ source=(
   "vicinae.hook"
 )
 
-sha256sums=('308d028c6ac648ad0aadc744bd25edca0fb7aad33712087d46868ba7a8ff7bdc'
-            '0b3b0ba82bc57aed5fd99b191deb65880a31a5ce7373a111a0ac63ff7f7e624d'
+sha256sums=('91c3c9d2b51f2b125197764945010b7edeacd081d613a8251cb09a026bfa9210'
+            'f5e4e5c0babbe94ccecc4a80cfc3f10b9d286c16966095da2a65bd7b136b3912'
             '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 build() {

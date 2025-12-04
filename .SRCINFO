@@ -25,8 +25,8 @@ pkgbase = vicinae
 	source = vicinae-v0.16.11.tar.gz::https://github.com/vicinaehq/vicinae/archive/refs/tags/v0.16.11.tar.gz
 	source = vicinae-v0.16.11-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v0.16.11
 	source = vicinae.hook
-	sha256sums = 308d028c6ac648ad0aadc744bd25edca0fb7aad33712087d46868ba7a8ff7bdc
-	sha256sums = 0b3b0ba82bc57aed5fd99b191deb65880a31a5ce7373a111a0ac63ff7f7e624d
+	sha256sums = 91c3c9d2b51f2b125197764945010b7edeacd081d613a8251cb09a026bfa9210
+	sha256sums = f5e4e5c0babbe94ccecc4a80cfc3f10b9d286c16966095da2a65bd7b136b3912
 	sha256sums = 870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5
 
 pkgname = vicinae
