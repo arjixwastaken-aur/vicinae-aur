@@ -4,6 +4,7 @@ pkgbase = vicinae-git
 	pkgrel = 4
 	url = https://github.com/vicinaehq/vicinae
 	arch = x86_64
+	arch = aarch64
 	license = GPL3
 	makedepends = git
 	makedepends = cmake
