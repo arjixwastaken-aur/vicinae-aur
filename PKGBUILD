@@ -2,7 +2,7 @@
 # Maintainer: Arjix <me@arjix.dev>
 
 pkgname=vicinae-bin
-pkgver=0.19.1
+pkgver=0.19.2
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
@@ -17,7 +17,7 @@ source=(
   "vicinae.hook"
 )
 
-sha256sums=('6647a74203a124a5b6f48b1aea4162b4df174e805f2c0e4687c4e8015c850792'
+sha256sums=('7a70277cff2b11e45900e1cf77700e5509af7175715072b439f3064a96583745'
             '3e946bcb7f3c2faa3568218987012db336be92acff805a373b6c10bdeaa9e7a8')
 
 package() {
