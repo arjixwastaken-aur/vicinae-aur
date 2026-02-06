@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.19.6
-pkgrel=2
+pkgrel=3
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -49,6 +49,7 @@ build() {
     -DVICINAE_GIT_COMMIT_HASH="${SHA:0:7}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DVICINAE_PROVENANCE=aur \
+    -DCMAKE_INSTALL_PREFIX=/usr \
     -B build
 
   cmake --build build
