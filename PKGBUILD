@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.19.6
-pkgrel=4
+pkgrel=5
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -28,17 +28,24 @@ makedepends=(
   'rapidfuzz-cpp'
   'jq'
   'glaze'
+  'curl'
 )
 provides=("vicinae")
+conflicts=("vicinae")
 source=(
   "${pkgname}-v${pkgver}.tar.gz::${url}/archive/refs/tags/v$pkgver.tar.gz"
-  "${pkgname}-v${pkgver}-meta.yml::https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}"
   "vicinae.hook"
 )
 
 sha256sums=('66f53cb90124f589199ed9a73f26b17d6aa03c1f0281f576991f18264b870d93'
-            '7613c752468400eb19c13debf60540416ae1d150562cff03182ee5c3b2cf09db'
             '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
+
+prepare() {
+    curl "https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}" \
+	--output "${pkgname}-v${pkgver}-meta.yml" \
+	--silent \
+	--follow
+}
 
 build() {
   SHA=$(jq .object.sha "${pkgname}-v${pkgver}-meta.yml" -r)
@@ -62,4 +69,3 @@ package() {
   # Pacman hook
   install -Dm644 "$srcdir/${pkgname%-git}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-git}.hook"
 }
-
