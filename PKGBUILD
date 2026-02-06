@@ -3,7 +3,7 @@
 
 pkgname=vicinae
 pkgver=0.19.6
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -37,7 +37,7 @@ source=(
 )
 
 sha256sums=('66f53cb90124f589199ed9a73f26b17d6aa03c1f0281f576991f18264b870d93'
-            'e6230dc2b2aaebb986cadecf627a9c5374dd65addd62c25965176b5e115021e1'
+            '7613c752468400eb19c13debf60540416ae1d150562cff03182ee5c3b2cf09db'
             '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 build() {
@@ -55,25 +55,10 @@ build() {
 }
 
 package() {
-  # Bin
-  install -Dm755 "$srcdir/$pkgname-$pkgver/build/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
-
-  # Themes
-  mkdir -p $pkgdir/usr/share/$pkgname
-  cp -r "$srcdir/$pkgname-$pkgver/extra/themes/" "$pkgdir/usr/share/$pkgname/"
-
-  # Desktop entry
-  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
-  
-  # Deeplink handler
-  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname-url-handler.desktop" "$pkgdir/usr/share/applications/$pkgname-url-handler.desktop"
-
-  # Systemd Service
-  install -Dm644 "$srcdir/$pkgname-$pkgver/extra/$pkgname.service" "$pkgdir/usr/lib/systemd/user/$pkgname.service"
-
-  # SVG icon
-  install -Dm644 "$srcdir/$pkgname-$pkgver/$pkgname/icons/$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+  cd "$pkgname-$pkgver"
+  DESTDIR="$pkgdir" cmake --install build
 
   # Pacman hook
-  install -Dm644 "$srcdir/${pkgname}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname}.hook"
+  install -Dm644 "$srcdir/${pkgname%-git}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-git}.hook"
 }
+
