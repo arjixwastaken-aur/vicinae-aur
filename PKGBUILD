@@ -3,7 +3,7 @@
 
 pkgname=vicinae-bin
 pkgver=0.19.5
-pkgrel=3
+pkgrel=4
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
 url="https://github.com/vicinaehq/vicinae"
@@ -27,11 +27,12 @@ prepare() {
 }
 
 package() {
-  exit 1
+  install -d "$pkgdir/usr"
   for item in ./vicinae/*; do
-    cp -a "$item" "$pkgdir/"
+    cp -a "$item" "$pkgdir/usr/"
   done
 
   # Pacman hook
   install -Dm644 "$srcdir/${pkgname%-bin}.hook" "$pkgdir/usr/share/libalpm/hooks/${pkgname%-bin}.hook"
 }
+
