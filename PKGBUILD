@@ -3,9 +3,9 @@
 
 pkgname=vicinae
 pkgver=0.19.6
-pkgrel=3
+pkgrel=4
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL3')
 depends=(
