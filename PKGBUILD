@@ -1,9 +1,11 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 # Maintainer: Arjix <me@arjix.dev>
 
+# shellcheck disable=SC2034
+# shellcheck disable=SC2154
 pkgname=vicinae
 pkgver=0.19.7
-pkgrel=2
+pkgrel=3
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -36,16 +38,15 @@ source=(
   "${pkgname}-v${pkgver}.tar.gz::${url}/archive/refs/tags/v$pkgver.tar.gz"
   "vicinae.hook"
 )
-options=(!strip)
 
 sha256sums=('fdc9fa65f57d823bdf693a1ca44f86ae7d7cbf027955630f91a23b83e2ee0797'
-            '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
+  '870f29cb68436deaaed2b87dff89bc753afdef8dcbfd1ec35c070bc39efe10a5')
 
 prepare() {
-    curl "https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}" \
-	--output "${pkgname}-v${pkgver}-meta.yml" \
-	--silent \
-	--follow
+  curl "https://api.github.com/repos/vicinaehq/vicinae/git/ref/tags/v${pkgver}" \
+    --output "${pkgname}-v${pkgver}-meta.yml" \
+    --silent \
+    --follow
 }
 
 build() {
@@ -64,7 +65,7 @@ build() {
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$pkgname-$pkgver" || exit
   DESTDIR="$pkgdir" cmake --install build
 
   # Pacman hook
