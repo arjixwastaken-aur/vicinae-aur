@@ -5,7 +5,7 @@
 # shellcheck disable=SC2154
 pkgname=vicinae
 pkgver=0.19.9
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -21,6 +21,8 @@ depends=(
   'minizip'
   'qtkeychain-qt6'
   'libxml2'
+  'qt6-declarative'
+  'syntax-highlighting'
 )
 makedepends=(
   'git'
