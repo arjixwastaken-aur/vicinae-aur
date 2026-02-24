@@ -3,7 +3,7 @@
 
 pkgname=vicinae-git
 pkgver=0.15.1.r1.g8cc6e59
-pkgrel=4
+pkgrel=5
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -11,6 +11,7 @@ license=('GPL3')
 depends=(
   'nodejs'
   'qt6-base'
+  'qt6-declarative'
   'qt6-svg'
   'protobuf'
   'cmark-gfm'
@@ -18,6 +19,7 @@ depends=(
   'libqalculate'
   'minizip'
   'qtkeychain-qt6'
+  'syntax-highlighting'
 )
 makedepends=(
   'git'
