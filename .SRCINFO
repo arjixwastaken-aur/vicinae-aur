@@ -1,7 +1,7 @@
 pkgbase = vicinae
 	pkgdesc = A focused launcher for your desktop — native, fast, extensible
 	pkgver = 0.20.10
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/vicinaehq/vicinae
 	arch = x86_64
 	arch = aarch64
@@ -17,7 +17,6 @@ pkgbase = vicinae
 	depends = nodejs
 	depends = qt6-base
 	depends = qt6-svg
-	depends = protobuf
 	depends = cmark-gfm
 	depends = layer-shell-qt
 	depends = libqalculate
