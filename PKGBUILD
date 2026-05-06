@@ -5,7 +5,7 @@
 # shellcheck disable=SC2154
 pkgname=vicinae
 pkgver=0.20.15
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -32,6 +32,7 @@ makedepends=(
   'jq'
   'glaze'
   'curl'
+  'qt6-shadertools'
 )
 provides=("vicinae")
 conflicts=("vicinae")
