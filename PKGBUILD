@@ -3,7 +3,7 @@
 
 pkgname=vicinae-git
 pkgver=0.15.1.r1.g8cc6e59
-pkgrel=5
+pkgrel=6
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
@@ -28,6 +28,7 @@ makedepends=(
   'npm'
   'rapidfuzz-cpp'
   'glaze'
+  'qt6-shadertools'
 )
 provides=("vicinae")
 conflicts=("vicinae")
