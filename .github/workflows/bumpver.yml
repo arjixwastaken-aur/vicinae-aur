@@ -33,7 +33,7 @@ jobs:
       - name: Configure git
         working-directory: "${{ github.workspace }}"
         run: |
-          cd "${{ github.workspace }}"
+          ls -lah
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
