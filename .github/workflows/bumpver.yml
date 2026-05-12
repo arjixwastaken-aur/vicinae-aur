@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
     permissions:
       contents: write
+
     steps:
       - name: Install tools
         run: |
@@ -26,13 +27,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Trust repo dir (container git safety)
-        working-directory: "${{ github.workspace }}"
-        run: git config --global --add safe.directory '*'
-
       - name: Configure git
         working-directory: "${{ github.workspace }}"
         run: |
+          git config --global --add safe.directory '*'
           git checkout --track "origin/${{ matrix.package }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -54,16 +52,51 @@ jobs:
             echo "result=bumped" >> "$GITHUB_OUTPUT"
           fi
 
-  summary:
+      - name: Signal bump
+        if: steps.bump.outputs.result == 'bumped'
+        run: echo "${{ matrix.package }}" > /tmp/bumped.txt
+
+      - uses: actions/upload-artifact@v4
+        if: steps.bump.outputs.result == 'bumped'
+        with:
+          name: bumped-${{ matrix.package }}
+          path: /tmp/bumped.txt
+
+  trigger-sync:
     needs: bump
     runs-on: ubuntu-latest
-    if: always()
+    if: always() && needs.bump.result != 'cancelled'
+    permissions:
+      actions: write
 
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: bumped-*
+          path: /tmp/bumped-flags
+        continue-on-error: true
+
+      - name: Trigger sync-to-aur if any package bumped
+        run: |
+          if ls /tmp/bumped-flags/ 2>/dev/null | grep -q .; then
+            echo "Bumped packages:"
+            cat /tmp/bumped-flags/*/bumped.txt
+            gh workflow run sync-to-aur.yml --repo "${{ github.repository }}"
+          else
+            echo "Nothing bumped, skipping sync."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Write summary
         run: |
           echo "## Version bump results" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Overall job status: **${{ needs.bump.result }}**" >> "$GITHUB_STEP_SUMMARY"
-          echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Check individual matrix job logs for per-package details." >> "$GITHUB_STEP_SUMMARY"
+          echo "Overall bump status: **${{ needs.bump.result }}**" >> "$GITHUB_STEP_SUMMARY"
+          if ls /tmp/bumped-flags/ 2>/dev/null | grep -q .; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "Triggered \`sync-to-aur\` for:" >> "$GITHUB_STEP_SUMMARY"
+            for f in /tmp/bumped-flags/*/bumped.txt; do
+              echo "- $(cat "$f")" >> "$GITHUB_STEP_SUMMARY"
+            done
+          fi
