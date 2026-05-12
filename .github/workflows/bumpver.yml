@@ -14,17 +14,17 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Install tools
+        run: |
+          pacman-key --init
+          pacman -Sy --noconfirm git curl jq pacman-contrib
+
       - name: init workspace
         run: mkdir -p "${{ github.workspace }}"
 
       - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.package }}
-
-      - name: Install tools
-        run: |
-          pacman-key --init
-          pacman -Sy --noconfirm git curl jq pacman-contrib
 
       - name: Trust repo dir (container git safety)
         working-directory: "${{ github.workspace }}"
@@ -33,7 +33,6 @@ jobs:
       - name: Configure git
         working-directory: "${{ github.workspace }}"
         run: |
-          ls -lah
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
