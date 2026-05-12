@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ matrix.package }}
 
       - name: Install tools
         run: |
@@ -24,18 +25,19 @@ jobs:
           pacman -Sy --noconfirm git curl jq pacman-contrib
 
       - name: Trust repo dir (container git safety)
+        working-directory: "${{ github.workspace }}"
         run: git config --global --add safe.directory '*'
 
-      - name: Checkout package branch
-        run: git checkout ${{ matrix.package }}
-
       - name: Configure git
+        working-directory: "${{ github.workspace }}"
         run: |
+          cd "${{ github.workspace }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Run bumpver script
         id: bump
+        working-directory: "${{ github.workspace }}"
         run: |
           set +e
           output=$(git show origin/main:bumpver/${{ matrix.package }}.sh | bash 2>&1)
