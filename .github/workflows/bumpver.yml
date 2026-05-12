@@ -1,0 +1,65 @@
+name: Bump versions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    container: archlinux/archlinux:base-devel
+    strategy:
+      matrix:
+        package: [vicinae, vicinae-bin, vicinae-appimage-bin]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trust repo dir (container git safety)
+        run: git config --global --add safe.directory '*'
+
+      - name: Install tools
+        run: |
+          pacman-key --init
+          pacman -Sy --noconfirm git curl jq pacman-contrib
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Checkout package branch
+        run: git checkout ${{ matrix.package }}
+
+      - name: Run bumpver script
+        id: bump
+        run: |
+          set +e
+          output=$(git show origin/main:bumpver/${{ matrix.package }}.sh | bash 2>&1)
+          exit_code=$?
+          echo "$output"
+          if [[ $exit_code -ne 0 ]]; then
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+            exit $exit_code
+          elif echo "$output" | grep -q "^up-to-date"; then
+            echo "result=up-to-date" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=bumped" >> "$GITHUB_OUTPUT"
+          fi
+
+  summary:
+    needs: bump
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Write summary
+        run: |
+          echo "## Version bump results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Overall job status: **${{ needs.bump.result }}**" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Check individual matrix job logs for per-package details." >> "$GITHUB_STEP_SUMMARY"
