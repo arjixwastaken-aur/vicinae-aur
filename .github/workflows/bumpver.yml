@@ -11,12 +11,12 @@ jobs:
       matrix:
         package: [vicinae, vicinae-bin, vicinae-appimage-bin]
       fail-fast: false
-
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install tools
         run: |
@@ -26,13 +26,13 @@ jobs:
       - name: Trust repo dir (container git safety)
         run: git config --global --add safe.directory '*'
 
+      - name: Checkout package branch
+        run: git checkout ${{ matrix.package }}
+
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Checkout package branch
-        run: git checkout ${{ matrix.package }}
 
       - name: Run bumpver script
         id: bump
