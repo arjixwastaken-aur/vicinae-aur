@@ -14,11 +14,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - run: mkdir -p "${{ github.workspace }}"
+      - name: init workspace
+        run: mkdir -p "${{ github.workspace }}"
 
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: ${{ matrix.package }}
 
       - name: Install tools
