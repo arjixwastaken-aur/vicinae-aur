@@ -18,13 +18,13 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Trust repo dir (container git safety)
-        run: git config --global --add safe.directory '*'
-
       - name: Install tools
         run: |
           pacman-key --init
           pacman -Sy --noconfirm git curl jq pacman-contrib
+
+      - name: Trust repo dir (container git safety)
+        run: git config --global --add safe.directory '*'
 
       - name: Configure git
         run: |
