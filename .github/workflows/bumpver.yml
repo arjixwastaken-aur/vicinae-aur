@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.package }}
+          fetch-depth: 0
 
       - name: Trust repo dir (container git safety)
         working-directory: "${{ github.workspace }}"
@@ -33,6 +33,7 @@ jobs:
       - name: Configure git
         working-directory: "${{ github.workspace }}"
         run: |
+          git checkout --track "origin/${{ matrix.package }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
