@@ -34,6 +34,7 @@ makedepends=(
   'curl'
   'qt6-shadertools'
 )
+install=vicinae.install
 provides=("vicinae")
 conflicts=("vicinae")
 source=(
