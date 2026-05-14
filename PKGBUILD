@@ -2,7 +2,7 @@
 # Maintainer: cilgin <cilgincc@outlook.com>
 
 pkgname=vicinae-appimage-bin
-pkgver=0.20.15
+pkgver=0.21.0
 pkgrel=1
 pkgdesc="Raycast like FOSS app on Linux"
 arch=('x86_64')
@@ -17,7 +17,7 @@ source=(
   "github-release.json::https://api.github.com/repos/vicinaehq/vicinae/releases/latest"
   "vicinae.sh"
 )
-sha256sums=('SKIP'
+sha256sums=('89690c2db2ad56ab60a18c3e9945b57d19e6c26622c5bef21bd7f239fe524312'
             '1856a49b51f1b13e8dd466d9c65690292e43d1f876c46210c8ef85c45841d33e')
 
 pkgver() {
