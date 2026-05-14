@@ -30,6 +30,7 @@ makedepends=(
   'glaze'
   'qt6-shadertools'
 )
+install=vicinae-git.install
 provides=("vicinae")
 conflicts=("vicinae")
 source=("git+${url}.git" "vicinae.hook")
