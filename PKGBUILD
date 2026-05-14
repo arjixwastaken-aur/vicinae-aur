@@ -23,6 +23,7 @@ depends=(
   minizip
   syntax-highlighting
 )
+install=vicinae-bin.install
 provides=("vicinae")
 conflicts=("vicinae")
 
