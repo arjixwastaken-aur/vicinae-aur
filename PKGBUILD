@@ -5,7 +5,7 @@
 # shellcheck disable=SC2154
 pkgname=vicinae
 pkgver=0.21.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop — native, fast, extensible"
 arch=('x86_64' 'aarch64')
 url="https://github.com/vicinaehq/vicinae"
